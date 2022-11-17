@@ -5,7 +5,7 @@ to the proper members via SMS. After which I receive members responses and I res
 This can get very repitive so I decided to automate first part of my task which is receiving email -> translating -> Sms to the members
 
 Technology: 
-Gmail API, Twilio, Translate PyPi
+Gmail API, Twilio API, Translate PyPi
 Language
 Python
 
