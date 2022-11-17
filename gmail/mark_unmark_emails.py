@@ -1,4 +1,4 @@
-from google_auth import gmail_authenticate, search_messages
+from gmail.google_auth import gmail_authenticate, search_messages
 
 def mark_as_read(service, query):
     messages_to_mark = search_messages(service, query)
