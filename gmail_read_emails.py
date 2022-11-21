@@ -27,6 +27,16 @@ def parse_parts(service, parts, message):
                     print(text)
     txtList.append(text.split())
 
+def mark_as_read(service, query):
+    messages_to_mark = search_messages(service, query)
+    print(f"Matched emails: {len(messages_to_mark)}")
+    return service.users().messages().batchModify(
+        userId='me',
+        body={
+            'ids': [ msg['id'] for msg in messages_to_mark],
+            'removeLabelIds': ['UNREAD']
+        }
+    ).execute()
 
 def read_message(service, message):
     global spanTxt, englishText
@@ -70,14 +80,16 @@ query = input("Enter an email address to query: ")
 while "@" not in query:
     query = input("Enter an email address to query: ")
 results = search_messages(service, query)
+#results = 
 print(f"Found {len(results)} results.")
 for msg in results:
+    mark_as_read(service, query)
     read_message(service, msg)
     break
 if len(results) > 0:
     print(query, "'s Most Recent Msg:", englishText)
     spanTxt = translator(englishText)
-    print("Traslated msg", spanTxt)
+    print("Translated msg", spanTxt)
     print(sms(spanTxt, query))
 else:
     print("Email Address not found.")
