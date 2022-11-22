@@ -12,7 +12,7 @@ def find_to_click_recovery_email(driver, b):
     except NoSuchElementException:
         return None
 print("Enter your email, password, recovery_email: ")
-email, password, recovery_email = "", "", ""
+email, password, recovery_email = "", "!", ""
 #map(str, input().split())
 driver = uc.Chrome(use_subprocess=True)
 url = 'https://gmail.com'
